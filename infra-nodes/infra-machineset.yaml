@@ -1,6 +1,8 @@
 apiVersion: machine.openshift.io/v1beta1
 kind: MachineSet
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
   labels:
     machine.openshift.io/cluster-api-cluster: test-7kjbl
   name: test-7kjbl-infra

@@ -1,6 +1,8 @@
 apiVersion: operator.openshift.io/v1
 kind: IngressController
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
   finalizers:
   - ingresscontroller.operator.openshift.io/finalizer-ingresscontroller
   name: default

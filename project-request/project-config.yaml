@@ -3,6 +3,7 @@ kind: Project
 metadata:
   annotations:
     release.openshift.io/create-only: "true"
+    argocd.argoproj.io/sync-options: Prune=false
   name: cluster
 spec:
   projectRequestTemplate:
