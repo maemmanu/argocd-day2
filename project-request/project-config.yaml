@@ -6,4 +6,4 @@ metadata:
   name: cluster
 spec:
   projectRequestTemplate:
-  name: project-request
+    name: project-request
