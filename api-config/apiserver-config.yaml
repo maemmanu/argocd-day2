@@ -4,6 +4,7 @@ metadata:
   annotations:
     oauth-apiserver.openshift.io/secure-token-storage: "true"
     release.openshift.io/create-only: "true"
+  name: cluster
 spec:
   audit:
     profile: Default
