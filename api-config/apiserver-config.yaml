@@ -1,0 +1,15 @@
+apiVersion: config.openshift.io/v1
+kind: APIServer
+metadata:
+  annotations:
+    oauth-apiserver.openshift.io/secure-token-storage: "true"
+    release.openshift.io/create-only: "true"
+spec:
+  audit:
+    profile: Default
+  servingCerts:
+    namedCertificates:
+    - names:
+      - ' api.test.sandbox199.opentlc.com '
+      servingCertificate:
+        name: api-certs
