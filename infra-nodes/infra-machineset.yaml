@@ -1,0 +1,64 @@
+apiVersion: machine.openshift.io/v1beta1
+kind: MachineSet
+metadata:
+  labels:
+    machine.openshift.io/cluster-api-cluster: test-7kjbl
+  name: test-7kjbl-infra
+  namespace: openshift-machine-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      machine.openshift.io/cluster-api-cluster: test-7kjbl
+      machine.openshift.io/cluster-api-machineset: test-7kjbl-infra
+  template:
+    metadata:
+      labels:
+        machine.openshift.io/cluster-api-cluster: test-7kjbl
+        machine.openshift.io/cluster-api-machine-role: worker
+        machine.openshift.io/cluster-api-machine-type: worker
+        machine.openshift.io/cluster-api-machineset: test-7kjbl-infra
+    spec:
+      metadata:
+        labels:
+          node-role.kubernetes.io/infra: ""
+      providerSpec:
+        value:
+          ami:
+            id: ami-0346f64579665ce3c
+          apiVersion: awsproviderconfig.openshift.io/v1beta1
+          blockDevices:
+          - ebs:
+              encrypted: true
+              iops: 0
+              kmsKey:
+                arn: ""
+              volumeSize: 120
+              volumeType: gp2
+          credentialsSecret:
+            name: aws-cloud-credentials
+          deviceIndex: 0
+          iamInstanceProfile:
+            id: test-7kjbl-worker-profile
+          instanceType: m5.large
+          kind: AWSMachineProviderConfig
+          metadata:
+            creationTimestamp: null
+          placement:
+            availabilityZone: us-east-2a
+            region: us-east-2
+          securityGroups:
+          - filters:
+            - name: tag:Name
+              values:
+              - test-7kjbl-worker-sg
+          subnet:
+            filters:
+            - name: tag:Name
+              values:
+              - test-7kjbl-private-us-east-2a
+          tags:
+          - name: kubernetes.io/cluster/test-7kjbl
+            value: owned
+          userDataSecret:
+            name: worker-user-data
