@@ -1,0 +1,9 @@
+apiVersion: config.openshift.io/v1
+kind: Project
+metadata:
+  annotations:
+    release.openshift.io/create-only: "true"
+  name: cluster
+spec:
+  projectRequestTemplate:
+  name: project-request
