@@ -1,32 +1,31 @@
-apiVersion: logging.openshift.io/v1
-kind: ClusterLogging
+apiVersion: "logging.openshift.io/v1"
+kind: "ClusterLogging"
 metadata:
-  name: instance
-  namespace: openshift-logging
+  name: "instance" 
+  namespace: "openshift-logging" 
 spec:
-  managementState: Managed
+  managementState: "Managed" 
   logStore:
-    type: elasticsearch
+    type: "elasticsearch" 
     retentionPolicy:
       application:
-        maxAge: 2d
+        maxAge: 1d
       infra:
-        maxAge: 3d
+        maxAge: 7d
       audit:
-        maxAge: 5d
+        maxAge: 7d
     elasticsearch:
+      nodeCount: 2
       resources:
-        limits:
-          memory: 4Gi
         requests:
+          cpu: 500m
           memory: 4Gi
-      nodeCount: 1
+      storage:
+        storageClassName: "gp2"
+        size: "20G"
+      redundancyPolicy: "SingleRedundancy"
       nodeSelector:
         node-role.kubernetes.io/logging: ""
-      redundancyPolicy: ZeroRedundancy
-      storage:
-        storageClassName: gp2
-        size: 30Gi
       tolerations:
       - key: logging
         value: reserved
@@ -34,9 +33,9 @@ spec:
       - key: logging
         value: reserved
         effect: NoExecute
-  visualization:
-    type: kibana
-    kibana:
+  visualization: 
+    type: "kibana"
+    kibana: 
       replicas: 1
       nodeSelector:
         node-role.kubernetes.io/logging: ""
@@ -47,10 +46,10 @@ spec:
       - key: logging
         value: reserved
         effect: NoExecute
-  curation:
-    type: curator
+  curation: 
+    type: "curator"
     curator:
-      schedule: 30 3 * * *
+      schedule: "30 3 * * *"
       nodeSelector:
         node-role.kubernetes.io/logging: ""
       tolerations:
@@ -60,9 +59,9 @@ spec:
       - key: logging
         value: reserved
         effect: NoExecute
-  collection:
+  collection: 
     logs:
-      type: fluentd
+      type: "fluentd"
       fluentd:
         tolerations:
         - operator: Exists
