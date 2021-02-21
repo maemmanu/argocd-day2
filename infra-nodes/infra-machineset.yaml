@@ -4,22 +4,22 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: Prune=false
   labels:
-    machine.openshift.io/cluster-api-cluster: test-7kjbl
-  name: test-7kjbl-infra
+    machine.openshift.io/cluster-api-cluster: test-96g6s
+  name: test-96g6s-infra
   namespace: openshift-machine-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      machine.openshift.io/cluster-api-cluster: test-7kjbl
-      machine.openshift.io/cluster-api-machineset: test-7kjbl-infra
+      machine.openshift.io/cluster-api-cluster: test-96g6s
+      machine.openshift.io/cluster-api-machineset: test-96g6s-infra
   template:
     metadata:
       labels:
-        machine.openshift.io/cluster-api-cluster: test-7kjbl
+        machine.openshift.io/cluster-api-cluster: test-96g6s
         machine.openshift.io/cluster-api-machine-role: worker
         machine.openshift.io/cluster-api-machine-type: worker
-        machine.openshift.io/cluster-api-machineset: test-7kjbl-infra
+        machine.openshift.io/cluster-api-machineset: test-96g6s-infra
     spec:
       metadata:
         labels:
@@ -27,7 +27,7 @@ spec:
       providerSpec:
         value:
           ami:
-            id: ami-0346f64579665ce3c
+            id: ami-0a1f868ad58ea59a7
           apiVersion: awsproviderconfig.openshift.io/v1beta1
           blockDevices:
           - ebs:
@@ -41,7 +41,7 @@ spec:
             name: aws-cloud-credentials
           deviceIndex: 0
           iamInstanceProfile:
-            id: test-7kjbl-worker-profile
+            id: test-96g6s-worker-profile
           instanceType: m5.large
           kind: AWSMachineProviderConfig
           metadata:
@@ -53,14 +53,14 @@ spec:
           - filters:
             - name: tag:Name
               values:
-              - test-7kjbl-worker-sg
+              - test-96g6s-worker-sg
           subnet:
             filters:
             - name: tag:Name
               values:
-              - test-7kjbl-private-us-east-2a
+              - test-96g6s-private-us-east-2a
           tags:
-          - name: kubernetes.io/cluster/test-7kjbl
+          - name: kubernetes.io/cluster/test-96g6s
             value: owned
           userDataSecret:
             name: worker-user-data
