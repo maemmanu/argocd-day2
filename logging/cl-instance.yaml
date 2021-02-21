@@ -2,7 +2,9 @@ apiVersion: "logging.openshift.io/v1"
 kind: "ClusterLogging"
 metadata:
   name: "instance" 
-  namespace: "openshift-logging" 
+  namespace: "openshift-logging"
+  annotations:
+          argocd.argoproj.io/sync-wave: "8" 
 spec:
   managementState: "Managed" 
   logStore:

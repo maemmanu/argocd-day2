@@ -5,6 +5,8 @@ metadata:
     machine.openshift.io/cluster-api-cluster: test-7kjbl
   name: test-7kjbl-logging
   namespace: openshift-machine-api
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: 1
   selector:
