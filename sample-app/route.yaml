@@ -2,6 +2,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: reverse-words
+  namespace: reverse-words
 spec:
   port:
     targetPort: http

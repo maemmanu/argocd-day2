@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: reverse-words
+  namespace: reverse-words
   labels:
     app: reverse-words
 spec:
