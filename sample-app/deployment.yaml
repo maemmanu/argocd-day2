@@ -1,28 +1,39 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
+  name: reverse-words
   labels:
-    app: bgd
-  name: bgd
+    app: reverse-words
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bgd
-  strategy: {}
+      app: reverse-words
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        app: bgd
+        app: reverse-words
     spec:
       containers:
-      - image: quay.io/redhatworkshops/bgd:latest
-        name: bgd
+      - name: reverse-words
+        image: quay.io/mavazque/reversewords:v0.0.3
+        ports:
+        - containerPort: 8080
+          name: http
         env:
-        - name: COLOR
-          value: "blue"
-        resources: {}
----
+        - name: RELEASE
+          value: "Base release"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          periodSeconds: 15
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          periodSeconds: 15

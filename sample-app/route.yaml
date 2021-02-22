@@ -1,21 +1,11 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  creationTimestamp: null
-  labels:
-    app: bgd
-  name: bgd
-  namespace: bgd
+  name: reverse-words
 spec:
-  host: "bgd.apps.test.sandbox1482.opentlc.com"
   port:
-    targetPort: 8080
+    targetPort: http
   to:
     kind: Service
-    name: bgd
+    name: reverse-words
     weight: 100
-status:
-  ingress:
-  - conditions:
-    - status: "True"
-      type: Admitted
