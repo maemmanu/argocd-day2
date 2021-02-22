@@ -4,7 +4,8 @@ metadata:
   name: cluster-logging
   namespace: openshift-logging
   annotations:
-    argocd.argoproj.io/sync-wave: "7" 
+    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/hook: Sync 
 spec:
   channel: "4.6" 
   name: cluster-logging

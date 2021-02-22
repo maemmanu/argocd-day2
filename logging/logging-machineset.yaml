@@ -6,6 +6,7 @@ metadata:
   name: test-7kjbl-logging
   namespace: openshift-machine-api
   annotations:
+    argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: 1
