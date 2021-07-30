@@ -18,7 +18,7 @@ spec:
   selector:
     matchLabels:
       app: hello-openshift
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
