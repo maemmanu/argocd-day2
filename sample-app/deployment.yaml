@@ -1,40 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reverse-words
-  namespace: reverse-words
-  labels:
-    app: reverse-words
+  name: example
+  annotations:
+    image.openshift.io/triggers: |-
+      [
+        {
+          "from": {
+            "kind": "ImageStreamTag",
+            "name": "openshift/hello-openshift:latest"
+          },
+          "fieldPath": "spec.template.spec.containers[0].image"
+        }
+      ]
+  namespace: test
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: reverse-words
+      app: hello-openshift
+  replicas: 3
   template:
     metadata:
       labels:
-        app: reverse-words
+        app: hello-openshift
     spec:
       containers:
-      - name: reverse-words
-        image: quay.io/mavazque/revsewords:v0.0.3
-        ports:
-        - containerPort: 8080
-          name: http
-        env:
-        - name: RELEASE
-          value: "Base release"
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 5
-          timeoutSeconds: 2
-          periodSeconds: 15
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 10
-          timeoutSeconds: 2
-          periodSeconds: 15
+        - name: hello-openshift
+          image: openshift/hello-openshift
+          ports:
+            - containerPort: 8080
