@@ -1,17 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    app: reverse-words
-  name: reverse-words
-  namespace: reverse-words
+  name: example
+  namespace: test
 spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: http
-    name: http
   selector:
-    app: reverse-words
-  type: ClusterIP
-
+    app: hello-openshift
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
