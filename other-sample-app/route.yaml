@@ -1,7 +1,7 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: recreate-example
+  name: sample-route
 spec:
   to:
     kind: Service
